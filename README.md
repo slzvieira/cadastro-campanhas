@@ -1,2 +1,2 @@
 # cadastro-campanhas
-Serviço REST para cadastro de campanhas
+Soluções para os desafios propostos
