@@ -1,0 +1,47 @@
+# deadlock-explain
+Deadlock
+
+Trata-se de um bloqueio mútuo indesejado entre 2 ou mais threads dentro de
+um aplicação.
+
+No desenvolvimento de aplicações concorrentes, o bloqueio (lock) se faz
+necessário em situações que uma thread depende de dados produzidos por uma
+outra thread. Mecanismos de lock como Thread.join(), Object.wait() e outros
+podem ser utilizados nestas situações.
+
+O uso incorreto destes mecanismos pode gerar o bloquei mútuo (deadlock).
+
+Um exemplo simples:
+
+public class Deadlock {
+
+    static Thread thread1 = new Thread() {
+        public void run() {
+            try {
+                System.out.println("Aguardando thread 2...");
+                thread2.join();
+                System.out.println("Thread 1 encerrada.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    static Thread thread2 = new Thread() {
+        public void run() {
+            try {
+                System.out.println("Aguardando thread 1...");
+                thread1.join();
+                System.out.println("Thread 2 encerrada.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    public static void main(String[] args) {
+        System.out.println("Iniciando a aplicacao.");
+        thread1.start();
+        thread2.start();
+    }
+}
