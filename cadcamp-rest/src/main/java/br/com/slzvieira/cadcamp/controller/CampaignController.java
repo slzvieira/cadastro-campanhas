@@ -34,8 +34,8 @@ public class CampaignController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "/campaigns", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Campaign> createCampaign(@RequestBody Campaign campaign) {
-        Campaign newCampaign = service.create(campaign);
+    public ResponseEntity<Campaign> create(@RequestBody Campaign campaign) {
+        Campaign newCampaign = service.createCampaign(campaign);
         return new ResponseEntity<>(newCampaign, HttpStatus.CREATED);
     }
 
@@ -44,8 +44,8 @@ public class CampaignController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "/campaigns", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Campaign>> readCampaign() {
-        List<Campaign> campaignList = service.readAll();
+    public ResponseEntity<List<Campaign>> read() {
+        List<Campaign> campaignList = service.readActiveCampaigns();
         return new ResponseEntity<>(campaignList, HttpStatus.OK);
     }
 
@@ -55,8 +55,8 @@ public class CampaignController {
      * @return
      */
     @RequestMapping(method = RequestMethod.PUT, value = "/campaigns", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Campaign> updateCampaign(@RequestBody Campaign campaign) {
-        Campaign newCampaign = service.update(campaign);
+    public ResponseEntity<Campaign> update(@RequestBody Campaign campaign) {
+        Campaign newCampaign = service.updateCampaign(campaign);
         return new ResponseEntity<>(newCampaign, HttpStatus.OK);
     }
 
@@ -66,9 +66,9 @@ public class CampaignController {
      * @return
      */
     @RequestMapping(method = RequestMethod.DELETE, value = "/campaigns/{id}")
-    public ResponseEntity<Campaign> deleteCampaign(@PathVariable String id) {
+    public ResponseEntity<Campaign> delete(@PathVariable String id) {
 
-        Campaign foundCampaign = service.delete(id);
+        Campaign foundCampaign = service.deleteCampaign(id);
 
         if (foundCampaign == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author sandro.vieira
  */
 @EntityScan
-@Entity
+@Entity(name = "ApplicationUser")
 public class User {
 
     /** Nome Completo */

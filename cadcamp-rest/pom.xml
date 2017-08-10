@@ -11,9 +11,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>cadastro-campanhas</name>
+    <name>cadcamp-rest</name>
     <description>Servico REST para cadastro de campanhas</description>
-    <url>https://github.com/slzvieira/cadastro-campanhas/</url>
+    <url>https://github.com/slzvieira/cadastro-campanhas/cadcamp-rest/</url>
 
     <properties>
         <main.basedir>${basedir}/../..</main.basedir>

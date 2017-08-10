@@ -17,7 +17,7 @@ import br.com.slzvieira.cadcamp.repository.CampaignRepository;
 
 /**
  * TODO DOCUMENT ME
- * @author Sandro
+ * @author sandro.vieira
  */
 @Service
 public class CampaignService {
@@ -34,9 +34,9 @@ public class CampaignService {
      * @return
      */
     @Transactional
-    public Campaign create(Campaign campaign) {
+    public Campaign createCampaign(Campaign campaign) {
 
-        List<Campaign> currentCampaignList = readAll();
+        List<Campaign> currentCampaignList = readActiveCampaigns();
         Campaign item = null;
         Date newEndDate = null;
         int i;
@@ -118,7 +118,7 @@ public class CampaignService {
      * TODO DOCUMENT ME
      * @return
      */
-    public List<Campaign> readAll() {
+    public List<Campaign> readActiveCampaigns() {
         return repository.findByInterval(trunc(new Date()));
     }
 
@@ -127,7 +127,7 @@ public class CampaignService {
      * @param campaign
      * @return
      */
-    public Campaign update(Campaign campaign) {
+    public Campaign updateCampaign(Campaign campaign) {
         
         if (!repository.exists(campaign.getTeamId())) {
             return null;
@@ -141,7 +141,7 @@ public class CampaignService {
      * @param id
      * @return
      */
-    public Campaign delete(String id) {
+    public Campaign deleteCampaign(String id) {
         
         Campaign oldCampaign = repository.findOne(id);
 
